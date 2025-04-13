@@ -1,6 +1,6 @@
 package com.provaBonam.interfaces;
 
-public interface Validator<T> {
+public interface RPGValidator<T> {
 
     void valid(T entity);
 }

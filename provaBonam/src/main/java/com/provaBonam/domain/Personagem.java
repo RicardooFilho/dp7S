@@ -4,8 +4,10 @@ import com.provaBonam.enums.Classe;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -14,6 +16,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(of = {"id"})
 @Getter
+@Setter
 public class Personagem {
 
     @Id
@@ -34,9 +37,27 @@ public class Personagem {
 
     private Long defesa;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id_personagem")
+    @OneToMany(mappedBy = "personagem", cascade = CascadeType.ALL)
     private List<ItemMagico> itens = new ArrayList<>();
 
+    public Personagem toExibicao() {
 
+        Long sumDefesa = getItens()
+                .stream()
+                .map(ItemMagico::getDefesa)
+                .filter(Objects::nonNull)
+                .reduce(0L, Long::sum);
+
+        this.setDefesa(this.defesa + sumDefesa);
+
+        Long sumForca = getItens()
+                .stream()
+                .map(ItemMagico::getForca)
+                .filter(Objects::nonNull)
+                .reduce(0L, Long::sum);
+
+        this.setForca(this.forca + sumForca);
+
+        return this;
+    }
 }

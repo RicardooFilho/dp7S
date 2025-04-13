@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="descricao155" value="java.sql.Types.VARCHAR(155)" dbms="h2,postgresql"/>
+    <property name="numerico" value="java.sql.Types.NUMERIC(10,0)" dbms="h2,postgresql"/>
+    <property name="data" value="java.sql.Types.DATE" dbms="h2,postgresql"/>
+    <property name="caracter" value="java.sql.Types.VARCHAR(1)" dbms="postgresql,h2"/>
+    <property name="descricao255" value="java.sql.Types.VARCHAR(255)" dbms="postgresql,h2"/>
+    <property name="descricao4000" value="java.sql.Types.VARCHAR(4000)" dbms="postgresql,h2"/>
+
+    <include file="changelog/personagem.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/item_magico.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

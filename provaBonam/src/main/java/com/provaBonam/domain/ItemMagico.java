@@ -1,5 +1,6 @@
 package com.provaBonam.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.provaBonam.enums.TipoItem;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,6 +12,7 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode(of = {"id"})
 @Getter
+@Setter
 public class ItemMagico {
 
     @Id
@@ -20,9 +22,15 @@ public class ItemMagico {
     private String nome;
 
     @Enumerated(EnumType.ORDINAL)
+    @Column(name = "tipo_item")
     private TipoItem tipoItem;
 
     private Long forca;
 
     private Long defesa;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "id_personagem")
+    private Personagem personagem;
 }

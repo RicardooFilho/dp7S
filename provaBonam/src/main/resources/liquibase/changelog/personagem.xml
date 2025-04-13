@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="CREATE_TABLE_PERSONAGEM" author="ricardo.filho">
+        <validCheckSum>ANY</validCheckSum>
+
+        <preConditions onFail="MARK_RAN" onFailMessage="A tabela PERSONAGEM já existe.">
+            <not>
+                <tableExists tableName="PERSONAGEM"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="PERSONAGEM">
+            <column name="ID" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_PERSONAGEM"/>
+            </column>
+            <column name="NOME" type="${descricao255}"/>
+            <column name="NOME_AVENTUREIRO" type="${descricao255}"/>
+            <column name="CLASSE" type="${numerico}"/>
+            <column name="LEVEL" type="${numerico}"/>
+            <column name="FORCA" type="${numerico}"/>
+            <column name="DEFESA" type="${numerico}"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
