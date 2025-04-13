@@ -39,13 +39,6 @@ public class ItemMagicoService {
         return repository.save(newItemMagico);
     }
 
-    public ItemMagico update(Long id, ItemMagico newItemMagico) {
-
-        return repository.findById(id)
-                .map(personagem -> repository.save(newItemMagico))
-                .orElseThrow(EntityNotFoundException::new);
-    }
-
     public void delete(Long id) {
 
         repository.deleteById(id);
